@@ -4,5 +4,4 @@ To build the guides:
 * Install the mizuho gem (http://github.com/FooBarWidget/mizuho/tree/master)
 * Run `rake guides` from the railties directory
 
-H
 ssh de macaca
