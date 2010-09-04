@@ -1,0 +1,21 @@
+<div class="champz-form">
+  <% form_tag do %>
+  <fieldset>
+    <legend>Please Log In</legend>
+
+    <div>
+      <label for="login">Login:</label>
+      <%= text_field_tag :login, params[:login] %>
+    </div>
+
+    <div>
+    <label for="password">Password:</label>
+    <%= password_field_tag :password, params[:password] %>
+    </div>
+
+    <div>
+      <%= submit_tag "Login" %>
+    </div>
+  </fieldset>
+  <% end %>
+</div>

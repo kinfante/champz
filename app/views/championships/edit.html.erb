@@ -1,0 +1,32 @@
+<h1>Editing championship</h1>
+
+<% form_for(@championship) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.label :number_teams %><br />
+    <%= f.text_field :number_teams %>
+  </p>
+  <p>
+    <%= f.label :match_type %><br />
+    <%= f.text_field :match_type %>
+  </p>
+  <p>
+    <%= f.label :image_url %><br />
+    <%= f.text_field :image_url %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @championship %> |
+<%= link_to 'Back', championships_path %>

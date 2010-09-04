@@ -1,0 +1,12 @@
+Championship's teams
+<% i = 1 %>
+
+<% form_tag(:action => 'create_teams', :method => "post") do %>
+  <% while i <= @championship.number_teams %>
+    <%= i %>.
+    <% i = i + 1 %> <input type="text" name="teams[]"></input>
+    <br/>
+  <% end %>
+    <input type="hidden" name="championship_id" value="<%=  @championship.id %>"></input>
+  <input type="submit"></input>
+<% end %>

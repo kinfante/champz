@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Champz Website</title>
+  <%= stylesheet_link_tag 'scaffold', 'champz', :media => "all" %>
+</head>
+<body id="champz">
+  <div id="banner">
+    <%= image_tag("logo.png") %>
+    <%= @page_title || "Championship Website" %>
+  </div>
+  <div id="columns">
+    <div id="side">
+      <%= link_to "Home", :controller => 'main'%><br />
+      <%= link_to "Questions", :controller => 'login', :action => 'login'%><br />
+      <%= link_to "News", :controller => 'login', :action => 'login'%><br />
+      <%= link_to "Contact", :controller => 'login', :action => 'login'%><br />
+      <br />
+      <% if session[:user_id] %>
+        <%= link_to "Profile", user_path(session[:user_id]) %><br />
+        <%= link_to "Championships", :controller => 'championships', :action => 'index'%><br />
+        <%= link_to "New championship", :controller => 'championships', :action => 'new'%><br />
+        <%= link_to "Logout", :controller => 'login', :action => 'logout'%><br />
+      <% else %>
+        <%= link_to "Create an account", :controller => 'users', :action => 'new'%><br />
+        <%= link_to "Login", :controller => 'login', :action => 'login'%><br />
+      <% end %>
+    </div>
+    <div id="main">
+      <% if flash[:notice] -%>
+        <div id="notice"><%= flash[:notice] %></div>
+      <% end -%>
+      <%= yield :layout %>
+    </div>
+  </div>
+</body>
+</html>

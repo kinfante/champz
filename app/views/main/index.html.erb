@@ -1,0 +1,14 @@
+<h1>Championship Catalog</h1>
+
+<% @championships.each do | championship | %>
+<div class="entry">
+  <%= image_tag(championship.image_url) %>
+  <h3><%=h championship.name %></h3>
+  <%= championship.description %>
+  <div class="price-line">
+    <span class="price"><%= championship.number_teams %></span>
+    <%= button_to 'View', championship, :method => :get %>
+  </div>
+</div>
+<br/>
+<% end %>

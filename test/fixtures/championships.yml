@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  description: MyString
+  number_teams: 1
+  match_type: 1
+
+two:
+  name: MyString
+  description: MyString
+  number_teams: 1
+  match_type: 1

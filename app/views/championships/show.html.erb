@@ -1,0 +1,24 @@
+<p>
+  <b>Name:</b>
+  <%=h @championship.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @championship.description %>
+</p>
+
+<p>
+  <b>Number teams:</b>
+  <%=h @championship.number_teams %>
+  <%= link_to 'Create/Edit teams', :controller => 'teams', :action => 'index', :championship_id => @championship %>
+</p>
+
+<p>
+  <b>Match type:</b>
+  <%=h @championship.match_type %>
+</p>
+
+
+<%= link_to 'Edit', edit_championship_path(@championship) %> |
+<%= link_to 'Back', championships_path %>
