@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :authorize, :except => [:new, :create, :show]
   # GET /users
   # GET /users.xml
   def index
@@ -34,7 +35,12 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
+    begin
+      @user = User.find(params[:id], :conditions => {:id => session[:user_id]})
+    rescue Exception => e
+      flash[:notice] = e.message
+      redirect_to :controller => 'main'
+    end
   end
 
   # POST /users
@@ -58,7 +64,7 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.xml
   def update
-    @user = User.find(params[:id])
+    @user = User.find(params[:id], :conditions => {:id => session[:user_id]})
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
@@ -75,22 +81,21 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.xml
   def destroy
-    @user = User.find(params[:id])
-    begin
-      @user.destroy
-      flash[:notice] = "User #{@user.name} deleted"
-    rescue Exception => e
-      flash[:notice] = e.message
+    if @user_logged.id == 1
+      @user = User.find(params[:id])
+      begin
+        @user.destroy
+        flash[:notice] = "User #{@user.name} deleted"
+      rescue Exception => e
+        flash[:notice] = e.message
+      end
+    else
+      flash[:notice] = "Operation not allowed"
     end
-    
     respond_to do |format|
       format.html { redirect_to(users_url) }
       format.xml  { head :ok }
     end
   end
 
-  protected
-    def authorize
-      
-    end
 end

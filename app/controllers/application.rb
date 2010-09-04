@@ -4,7 +4,8 @@
 class ApplicationController < ActionController::Base
   layout "championships"
   before_filter :authorize, :except => [:login, :show]
-  
+  before_filter :set_user_logged
+
   helper :all # include all helpers, all the time
 
   # See ActionController::RequestForgeryProtection for details
@@ -18,11 +19,16 @@ class ApplicationController < ActionController::Base
 
   protected
     def authorize
-      @user_logged = User.find_by_id(session[:user_id])
-      unless @user_logged
+      unless session[:user_id]
         session[:original_uri] = request.request_uri
         flash[:notice] = "Please log in"
         redirect_to :controller => 'login', :action => 'login'
+      end
+    end
+
+    def set_user_logged
+      if session[:user_id]
+        @user_logged = User.find_by_id(session[:user_id])
       end
     end
 end
