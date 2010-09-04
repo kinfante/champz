@@ -20,7 +20,7 @@
       <%= link_to "Contact", :controller => 'login', :action => 'login'%><br />
       <br />
       <% if session[:user_id] %>
-        <%= link_to "Profile", user_path(session[:user_id]) %><br />
+        <%= link_to "Profile (#{@user_logged.login})", user_path(session[:user_id]) %><br />
         <%= link_to "Championships", :controller => 'championships', :action => 'index'%><br />
         <%= link_to "New championship", :controller => 'championships', :action => 'new'%><br />
         <%= link_to "Logout", :controller => 'login', :action => 'logout'%><br />
