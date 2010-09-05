@@ -12,7 +12,7 @@
     <tr class="<%= cycle('list-line-odd', 'list-line-even') %>">
 
       <td>
-        <%= image_tag championship.image_url, :class => 'list-image' %>
+        <%= image_tag (championship.image_url and !championship.image_url.blank?) ? championship.image_url : "no_image.gif", :class => 'list-image' %>
       </td>
       <td class="list-description">
         <dl>

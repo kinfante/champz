@@ -1,30 +1,32 @@
 <h1>New championship</h1>
+<%= error_messages_for 'championship' %>
 
-<% form_for(@championship) do |f| %>
-  <%= f.error_messages %>
+<% form_for :championship, :url => { :action => :create } do |form| %>
 
   <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= form.label :name %><br />
+    <%= form.text_field :name %>
   </p>
   <p>
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
+    <%= form.label :description %><br />
+    <%= form.text_field :description %>
   </p>
   <p>
-    <%= f.label :number_teams %><br />
-    <%= f.text_field :number_teams %>
+    <%= form.label :number_teams %><br />
+    <%= form.text_field :number_teams %>
   </p>
   <p>
-    <%= f.label :match_type %><br />
-    <%= f.text_field :match_type %>
+    <%= form.label :match_type %><br />
+    <%= form.select :match_type,
+                    Championship::CHAMPIONSHIP_TYPES,
+                    :prompt => "Select an type" %>
   </p>
   <p>
-    <%= f.label :image_url %><br />
-    <%= f.text_field :image_url %>
+    <%= form.label :image_url %><br />
+    <%= form.text_field :image_url %>
   </p>
   <p>
-    <%= f.submit "Create" %>
+    <%= submit_tag "Create", :class => "submit" %>
   </p>
 <% end %>
 
