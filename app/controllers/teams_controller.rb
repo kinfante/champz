@@ -50,6 +50,10 @@ class TeamsController < ApplicationController
   # GET /teams/1/edit
   def edit
     @team = Team.find(params[:id])
+    if @team.championship.user_id != session[:user_id]
+      flash[:notice] = "Team not allowed"
+      redirect_to(:controller => 'championships')
+    end
   end
 
   # POST /teams
