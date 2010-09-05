@@ -2,7 +2,9 @@ class ChampionshipsController < ApplicationController
   # GET /championships
   # GET /championships.xml
   def index
-    @championships = Championship.find_all_by_user_id(session[:user_id])
+    #@championships = Championship.find_all_by_user_id(session[:user_id])
+    @championships = Championship.paginate :page => params[:page], :per_page => 4,
+                                          :conditions => {:user_id => session[:user_id]}
 
     respond_to do |format|
       format.html # index.html.erb
@@ -80,9 +82,12 @@ class ChampionshipsController < ApplicationController
   # DELETE /championships/1
   # DELETE /championships/1.xml
   def destroy
-    @championship = Championship.find(params[:id], :conditions => {:user_id => session[:user_id]})
-    @championship.destroy
-
+    begin
+      @championship = Championship.find(params[:id], :conditions => {:user_id => session[:user_id]})
+      @championship.destroy
+    rescue Exception => e
+      flash[:notice] = e.message
+    end
     respond_to do |format|
       format.html { redirect_to(championships_url) }
       format.xml  { head :ok }
