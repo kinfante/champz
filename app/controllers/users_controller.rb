@@ -81,7 +81,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.xml
   def destroy
-    if false
+    if @user_logged.id == 1 and params[:id] != @user_logged.id
       @user = User.find(params[:id])
       begin
         @user.destroy
