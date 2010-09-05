@@ -4,8 +4,8 @@ class Championship < ActiveRecord::Base
   
   CHAMPIONSHIP_TYPES = [
     #Displayed              stored in db
-    [ "One turn",           "1" ],
-    [ "Turn and return",    "2" ]
+    [ "One turn",           1 ],
+    [ "Turn and return",    2 ]
   ]
 
   #START:validation
