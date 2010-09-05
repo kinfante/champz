@@ -1,12 +1,11 @@
 Championship's teams
-<% i = 1 %>
 
 <% form_tag(:action => 'create_teams', :method => "post") do %>
-  <% while i <= @championship.number_teams %>
-    <%= i %>.
-    <% i = i + 1 %> <input type="text" name="teams[]"></input>
+  <% @teams.each_with_index do |@team, index| %>
+    <%= index+1 -%>:
+    <%= text_field("team[]", 'name') %>
     <br/>
   <% end %>
-    <input type="hidden" name="championship_id" value="<%=  @championship.id %>"></input>
-  <input type="submit"></input>
+  <%= hidden_field_tag "championship_id", @championship.id %>
+  <%= submit_tag %>
 <% end %>

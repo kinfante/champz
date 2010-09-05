@@ -37,7 +37,13 @@ class TeamsController < ApplicationController
   def new_teams
     begin
       @championship = Championship.find(params[:id], :conditions => {:user_id => session[:user_id]})
-      if @championship.teams.size > 0
+
+      @teams = []
+      @championship.number_teams.times {
+        @teams << Team.new
+      }
+
+      if @championship.teams.size == @championship.number_teams
         flash[:notice] = "Teams already created."
         redirect_to(:action => 'index', :championship_id => @championship)
       end
@@ -75,11 +81,11 @@ class TeamsController < ApplicationController
 
   def create_teams
     @championship = Championship.find(params[:championship_id], :conditions => {:user_id => session[:user_id]})
-    teams = params[:teams]
+    teams = params[:team]
     if teams.size == (@championship.number_teams - @championship.teams.size)
-      teams.each do |t|
-        @championship.teams << Team.new(:name => t)
-      end
+      Team.create(teams) { |team|
+        team.championship = @championship
+      }
       flash[:notice] = 'Teams was successfully created.'
     else
       flash[:notice] = 'Teams not created.'
