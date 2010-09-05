@@ -1,18 +1,38 @@
-<h1>Championship Catalog</h1>
+<div id="championship-list">
+  <h1>Listing championships</h1>
 
-<% @championships.each do | championship | %>
-<div class="entry">
-  <%= image_tag((championship.image_url and !championship.image_url.blank?) ? championship.image_url : "no_image.gif") %>
-  <h3><%=h championship.name %></h3>
-  <%= championship.description %>
-  <br/>
-  <span class="price"><%= championship.number_teams %></span>
-  <br/>
-  <div class="price-line">
-    <%= button_to 'View', championship, :method => :get %>
-  </div>
+  <table>
+    <tr>
+      <td>Image</td>
+      <td>Name</td>
+      <td>Number_teams</td>
+      <td>Type_Match</td>
+    </tr>
+  <% for championship in @championships %>
+    <tr class="<%= cycle('list-line-odd', 'list-line-even') %>">
+
+      <td>
+        <%= image_tag (championship.image_url and !championship.image_url.blank?) ? championship.image_url : "no_image.gif", :class => 'list-image' %>
+      </td>
+      <td class="list-description">
+        <dl>
+          <dt class="list-title"><%=h championship.name %></dt>
+          <dd><%=h truncate(championship.description.gsub(/<.*?>/,''), :length => 80) %></dd>
+        </dl>
+      </td>
+      <td><%=h championship.number_teams %></td>
+      <td><%=h championship.match_type %></td>
+
+      <td class="list-actions">
+        <%= link_to 'Show', championship %><br/>
+        <%= link_to 'Edit', edit_championship_path(championship) %><br/>
+        <%= link_to 'Destroy', championship, :confirm => 'Are you sure?', :method => :delete %>
+      </td>
+    </tr>
+  <% end %>
+  </table>
 </div>
-<br/>
-<% end %>
+<br />
 <br/>
 <%= will_paginate @championships %>
+<%= link_to 'New championship', new_championship_path %>
