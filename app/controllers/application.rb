@@ -26,6 +26,10 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    def clear_session
+      session[:user_id] = nil
+    end
+
     def set_user_logged
       if session[:user_id]
         @user_logged = User.find_by_id(session[:user_id])

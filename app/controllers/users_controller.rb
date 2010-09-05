@@ -26,6 +26,7 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.xml
   def new
+    clear_session
     @user = User.new
 
     respond_to do |format|

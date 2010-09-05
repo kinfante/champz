@@ -4,7 +4,7 @@ class LoginController < ApplicationController
   end
 
   def login
-    session[:user_id] = nil
+    clear_session
     if request.post?
       user = User.authenticate(params[:login], params[:password])
       if user
@@ -19,7 +19,7 @@ class LoginController < ApplicationController
   end
 
   def logout
-    session[:user_id] = nil
+    clear_session
     flash[:notice] = "Logged out"
     redirect_to(:action => "login")
   end
