@@ -15,9 +15,9 @@
   <div id="columns">
     <div id="side">
       <%= link_to "Home", :controller => 'main'%><br />
-      <%= link_to "Questions", :controller => 'login', :action => 'login'%><br />
-      <%= link_to "News", :controller => 'login', :action => 'login'%><br />
-      <%= link_to "Contact", :controller => 'login', :action => 'login'%><br />
+      <%= link_to "Questions", :controller => 'main'%><br />
+      <%= link_to "News", :controller => 'main'%><br />
+      <%= link_to "Contact", :controller => 'main'%><br />
       <br />
       <% if session[:user_id] %>
         <%= link_to "Profile (#{@user_logged.login})", user_path(session[:user_id]) %><br />
