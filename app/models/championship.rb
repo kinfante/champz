@@ -17,7 +17,8 @@ class Championship < ActiveRecord::Base
                       :message => "must be a URL for a GIF, JPG, or PNG image"
   #END:validation
 
-  def self.find_championships_for_home
-    find(:all)
+  def self.find_championships_for_home(page = 1)
+    #find(:all)
+    paginate :page => page, :per_page => 4
   end
 end
