@@ -2,11 +2,13 @@
 
 <% @championships.each do | championship | %>
 <div class="entry">
-  <%= image_tag(championship.image_url) %>
+  <%= image_tag((championship.image_url and !championship.image_url.blank?) ? championship.image_url : "no_image.gif") %>
   <h3><%=h championship.name %></h3>
   <%= championship.description %>
+  <br/>
+  <span class="price"><%= championship.number_teams %></span>
+  <br/>
   <div class="price-line">
-    <span class="price"><%= championship.number_teams %></span>
     <%= button_to 'View', championship, :method => :get %>
   </div>
 </div>
