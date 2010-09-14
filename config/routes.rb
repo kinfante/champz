@@ -1,4 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
+  map.connect '/matches/generate', :controller => 'matches', :action => 'generate'
+  map.resources :matches
+
   map.resources :teams
 
   map.resources :users

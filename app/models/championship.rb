@@ -1,6 +1,7 @@
 class Championship < ActiveRecord::Base
   belongs_to :user
   has_many :teams, :dependent => :destroy
+  has_many :matches
   
   CHAMPIONSHIP_TYPES = [
     #Displayed              stored in db

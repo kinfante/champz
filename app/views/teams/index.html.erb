@@ -19,7 +19,7 @@
 <br />
 
 <% if @championship.teams.size > 0 %>
-  <%= link_to 'View/Create matches', :controller => 'match' %>
+  <%= link_to 'View/Create matches', :controller => 'matches', :championship_id => @championship %>
 <% else %>
   <%= link_to 'Create teams', :action => 'new_teams', :id => @championship %>
 <% end %>
