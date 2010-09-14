@@ -1,0 +1,38 @@
+<p>
+  <b>Championship:</b>
+  <%=h @match.championship.name %>
+</p>
+
+<p>
+  <b>Round:</b>
+  <%=h @match.round %>
+</p>
+
+<p>
+  <b>Home Team:</b>
+  <%=h @match.home_team.name %>
+</p>
+
+<p>
+  <b>Away Team:</b>
+  <%=h @match.away_team.name %>
+</p>
+
+<p>
+  <b>Home score:</b>
+  <%=h @match.home_score %>
+</p>
+
+<p>
+  <b>Away score:</b>
+  <%=h @match.away_score %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%=h @match.status %>
+</p>
+
+
+<%= link_to 'Edit', edit_match_path(@match) %> |
+<%= link_to 'Back', :controller => :matches, :championship_id => @match.championship %>

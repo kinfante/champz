@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  team: 
+  team: 
+  home_score: 1
+  away_score: 1
+  status: 1
+  championship: 
+  round: 1
+
+two:
+  team: 
+  team: 
+  home_score: 1
+  away_score: 1
+  status: 1
+  championship: 
+  round: 1
