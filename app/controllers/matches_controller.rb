@@ -61,7 +61,7 @@ class MatchesController < ApplicationController
   def generate
     begin
       @championship = Championship.find(params[:championship_id])
-      if @championship.user_id != @user_logged.id or @championship.matches != 0
+      if @championship.user_id != @user_logged.id or !@championship.matches.empty?
         flash[:notice] = 'Not allowed.'
       else
         match_generator
