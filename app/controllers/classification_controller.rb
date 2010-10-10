@@ -1,7 +1,6 @@
 class ClassificationController < ApplicationController
   def show
     championship = Championship.find(params[:id])
-
     @classification = generate_classification(championship)
   end
 
@@ -53,6 +52,6 @@ class ClassificationController < ApplicationController
           classif[match.away_team.id].balance_goals = classif[match.away_team.id].pro_goals - classif[match.away_team.id].against_goals
         end
       }
-      classif
+      classif.sort {|a,b| b[1].points<=>a[1].points}
     end
 end
