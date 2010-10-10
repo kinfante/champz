@@ -1,0 +1,37 @@
+<strong>Classification</strong>
+
+<table>
+    <thead>
+        <tr>
+            <td></td>
+            <td class="time"></td>
+            <td title="pontos">P</td>
+            <td title="jogos">J</td>
+            <td title="vitórias">V</td>
+            <td title="empates">E</td>
+            <td title="derrotas">D</td>
+            <td title="gols pró">GP</td>
+            <td title="gols contra">GC</td>
+            <td title="saldo de gols">SG</td>
+            <td title="% de aproveitamento">%</td>
+        </tr>
+    </thead>
+    <tbody id="dados-tabela-classificacao"></tbody>
+    <% @classification.each { |key, cl| %>
+    <tr>
+      <td></td>
+      <td><%= cl.team.name %></td>
+      <td><%= cl.points %></td>
+      <td><%= cl.games %></td>
+      <td><%= cl.win %></td>
+      <td><%= cl.draw %></td>
+      <td><%= cl.lost %></td>
+      <td><%= cl.pro_goals %></td>
+      <td><%= cl.against_goals %></td>
+      <td><%= cl.balance_goals %></td>
+      <td><%= cl.percent %></td>
+    </tr>
+<% } %>
+
+
+</table>

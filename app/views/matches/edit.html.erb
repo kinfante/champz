@@ -4,7 +4,7 @@
   <%= f.error_messages %>
 
   <p>
-    <%= @match.home_team.name %> <%= f.text_field :home_score, :size => 1 %> X <%= f.text_field :home_score, :size => 1 %> <%= @match.away_team.name %>
+    <%= @match.home_team.name %> <%= f.text_field :home_score, :size => 1 %> X <%= f.text_field :away_score, :size => 1 %> <%= @match.away_team.name %>
   </p>
   <p>
     <%= f.label :status %><br />

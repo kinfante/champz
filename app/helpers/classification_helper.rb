@@ -1,0 +1,2 @@
+module ClassificationHelper
+end
