@@ -116,7 +116,9 @@ class MatchesController < ApplicationController
 
   private
     def match_generator
-      # for 1 turn
+      matches_ = []
+      # for 1 or 2 turns
+      # gambis!!! deve ter jeito muito melhor de fazer
       rounds = (@championship.number_teams - 1)
       teams = @championship.teams
       matches = teams.combination(2).to_a
@@ -127,7 +129,7 @@ class MatchesController < ApplicationController
         for j in (0..(matches.size-1)) do
           t = matches.at(j)
           if !m.include?(t[0].id) and !m.include?(t[1].id)
-            create_match(t, i)
+            matches_ << create_match(t[0], t[1], i)
             matches.delete_at(j)
             m = m.concat([t[0].id, t[1].id])
             k = k+1
@@ -136,22 +138,29 @@ class MatchesController < ApplicationController
             break
           end
           if k == (teams.size/2) -1 and i == rounds
-            create_match(matches.at(0), i)
+            matches_ << create_match(matches.at(0)[0], matches.at(0)[1], i)
             break
           end
         end
       end
+
+      if @championship.match_type == 2 #Championship.CHAMPIONSHIP_TYPES Turn and Return
+        matches_.each { |match_|
+          create_match(match_.away_team, match_.home_team, match_.round + rounds)
+        }
+      end
     end
 
-    def create_match(item, round)
+    def create_match(home_team, away_team, round)
       match = Match.new
-      match.home_team = item[0]
-      match.away_team = item[1]
+      match.home_team = home_team
+      match.away_team = away_team
       match.status = 0
       match.championship = @championship
       match.home_score = 0
       match.away_score = 0
       match.round = round
       match.save!
+      match
     end
 end
