@@ -1,7 +1,7 @@
 class ClassificationController < ApplicationController
   def show
-    championship = Championship.find(params[:id])
-    @classification = generate_classification(championship)
+    @championship = Championship.find(params[:id])
+    @classification = generate_classification(@championship)
   end
 
   private
