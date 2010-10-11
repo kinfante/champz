@@ -68,11 +68,12 @@ class ChampionshipsController < ApplicationController
     @championship = Championship.find(params[:id], :conditions => {:user_id => session[:user_id]})
 
     respond_to do |format|
-      if @championship.update_attributes(params[:championship])
+      if verify_attributes() and @championship.update_attributes(params[:championship])
         flash[:notice] = 'Championship was successfully updated.'
         format.html { redirect_to(@championship) }
         format.xml  { head :ok }
       else
+        flash[:notice] = 'Error while trying to update.'
         format.html { render :action => "edit" }
         format.xml  { render :xml => @championship.errors, :status => :unprocessable_entity }
       end
@@ -92,5 +93,13 @@ class ChampionshipsController < ApplicationController
       format.html { redirect_to(championships_url) }
       format.xml  { head :ok }
     end
+  end
+
+  private
+  def verify_attributes
+    if params[:championship][:match_type] and params[:match_type] != @championship.match_type
+      return false
+    end
+    return true
   end
 end
