@@ -52,6 +52,11 @@ class ClassificationController < ApplicationController
           classif[match.away_team.id].balance_goals = classif[match.away_team.id].pro_goals - classif[match.away_team.id].against_goals
         end
       }
+
+      classif.each { |c|
+        c[1].percent = (c[1].points.to_f/(c[1].games.to_f*3)).to_f
+      }
+
       classif.sort {|a,b| b[1].points<=>a[1].points}
     end
 end
