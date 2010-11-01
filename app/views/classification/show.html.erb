@@ -29,7 +29,7 @@
       <td><%= cl.pro_goals %></td>
       <td><%= cl.against_goals %></td>
       <td><%= cl.balance_goals %></td>
-      <td><%= cl.percent %></td>
+      <td><%= number_to_percentage(cl.percent * 100, :precision => 0) %></td>
     </tr>
 <% } %>
 
