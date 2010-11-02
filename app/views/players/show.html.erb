@@ -1,0 +1,28 @@
+<p>
+  <b>Name:</b>
+  <%=h @player.name %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%=h @player.last_name %>
+</p>
+
+<p>
+  <b>Birth:</b>
+  <%=h @player.birth %>
+</p>
+
+<p>
+  <b>Position:</b>
+  <%=h @player.position %>
+</p>
+
+<p>
+  <b>Team:</b>
+  <%=h @player.team.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_player_path(@player) %> |
+<%= link_to 'Back', :controller => :players, :team_id => @player.team %>

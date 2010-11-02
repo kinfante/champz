@@ -3,6 +3,13 @@
   <%=h @team.name %>
 </p>
 
+<p>
+  <% @team.players.each { |player| %>
+  <b>Player:</b>
+  <%=h player.name %><br/>
+  <%  } %>
+</p>
+
 
 <%= link_to 'Edit', edit_team_path(@team) %> |
 <%= link_to 'Back', :action => 'index', :championship_id => @team.championship %>
