@@ -1,0 +1,30 @@
+<h1>New player</h1>
+
+<% form_for(@player) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </p>
+  <p>
+    <%= f.label :birth %><br />
+    <%= f.date_select :birth, :start_year => 1950, :end_year => Time.now.year, :default => { :day => 01, :month => 01, :year => 1980 } %>
+  </p>
+  <p>
+    <%= f.label :position %><br />
+    <%= f.text_field :position %>
+  </p>
+  <p>
+    <%= hidden_field_tag(:team, @player.team.id)%>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', :controller => :players, :team_id => @player.team %>

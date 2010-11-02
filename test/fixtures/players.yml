@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  last_name: MyString
+  birth: 2010-11-02
+  position: MyString
+  team: 
+
+two:
+  name: MyString
+  last_name: MyString
+  birth: 2010-11-02
+  position: MyString
+  team: 
