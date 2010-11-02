@@ -17,7 +17,9 @@
   </p>
   <p>
     <%= f.label :position %><br />
-    <%= f.text_field :position %>
+    <%= f.select :position,
+                    Player::POSITION_TYPES,
+                    :prompt => "Select an type" %>
   </p>
   <p>
     <%= hidden_field_tag(:team, @player.team.id)%>

@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(:version => 20101102185044) do
     t.string   "name"
     t.string   "last_name"
     t.date     "birth"
-    t.string   "position"
+    t.integer  "position"
     t.integer  "team_id"
     t.datetime "created_at"
     t.datetime "updated_at"

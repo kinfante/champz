@@ -4,7 +4,7 @@ class CreatePlayers < ActiveRecord::Migration
       t.string :name
       t.string :last_name
       t.date :birth
-      t.string :position
+      t.integer :position
       t.references :team
 
       t.timestamps
