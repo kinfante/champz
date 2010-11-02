@@ -11,7 +11,8 @@ class Championship < ActiveRecord::Base
 
   #START:validation
   validates_presence_of :name, :description, :number_teams, :match_type
-  validates_numericality_of :number_teams, :match_type
+  validates_numericality_of :match_type
+  validates_numericality_of :number_teams, :even => 'even?'
   validates_uniqueness_of :name
   validates_format_of :image_url,
                       :with    => %r{(\.(gif|jpg|png)$)|(^$)}i,
