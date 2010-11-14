@@ -3,7 +3,7 @@ require 'digest/sha2'
 class User < ActiveRecord::Base
   has_many :championships, :dependent => :destroy
 
-  validates_presence_of :name, :login
+  validates_presence_of :login
   validates_uniqueness_of :login
 
   attr_accessor :password_confirmation
@@ -14,11 +14,13 @@ class User < ActiveRecord::Base
 
   def self.authenticate(login, password)
     user = self.find_by_login(login)
-    if user
+    if user and user.open_id_url.nil?
       expected_password = encrypted_password(password, user.salt)
       if user.hashed_password != expected_password
         user = nil
       end
+    else
+      user = nil
     end
     user
   end
@@ -38,6 +40,12 @@ class User < ActiveRecord::Base
     if self.login == "kinfante"
       raise "Can't delete admin user"
     end
+  end
+
+  def self.find_or_initialize_by_identity_url id
+    user = User.find_by_open_id_url id
+    user = User.new({:open_id_url => id}) unless user
+    user
   end
 
   private

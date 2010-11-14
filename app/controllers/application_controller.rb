@@ -3,7 +3,7 @@
 
 class ApplicationController < ActionController::Base
   layout "championships"
-  before_filter :authorize, :except => [:login, :show]
+  before_filter :authorize, :except => [:login, :show, :complete_openid_auth]
   before_filter :set_user_logged
 
   helper :all # include all helpers, all the time

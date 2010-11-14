@@ -189,6 +189,15 @@ h1 {
   margin-left: 5.5em;
 }
 
+/* embeds the openid image in the text field */
+input#openid_url {
+   background: url(http://openid.net/login-bg.gif) no-repeat;
+   background-color: #fff;
+   background-position: 0 50%;
+   color: #000;
+   padding-left: 18px;
+}
+
 /* The error box */
 
 .fieldWithErrors {

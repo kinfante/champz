@@ -4,13 +4,18 @@
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :login %><br />
+    <%= f.label :login %>:<br />
     <%= f.text_field :login %>
   </p>
+
+  <p>
+    <%= f.label :name %>:<br />
+    <%= f.text_field :name %>
+  </p>
+  <div>
+    <%= f.label :email %>:<br />
+    <%= f.text_field :email, :size => 40 %>
+  </div>
 
   <p>
     <%= f.submit "Update" %>

@@ -23,6 +23,10 @@
       <%= f.password_field :password_confirmation, :size => 40 %>
     </div>
     <div>
+      <%= f.label :email %>:
+      <%= f.text_field :email, :size => 40 %>
+    </div>
+    <div>
       <%= f.submit "Add User", :class => "submit" %>
     </div>
   </fieldset>
