@@ -75,7 +75,7 @@ class LoginController < ApplicationController
         end
         #flash[:pape_results] = pape_message
       end
-      authenticate_openid_user(oidresp.display_identifier, ax)
+      authenticate_openid_user(oidresp, ax)
     when OpenID::Consumer::SETUP_NEEDED
       flash[:alert] = "Immediate request failed - Setup Needed"
     when OpenID::Consumer::CANCEL
@@ -152,9 +152,9 @@ class LoginController < ApplicationController
   end
 
   def authenticate_openid_user(openid, ax)
-    @user = User.find_or_initialize_by_identity_url(openid)
+    @user = User.find_or_initialize_by_identity_url(openid.identity_url)
     if @user.new_record?
-      @user.login = ax['nickname'] || openid
+      @user.login = ax['nickname'] || openid.display_identifier
       @user.email = ax['email']
       @user.password = "not_applicable"
       @user.password_confirmation = "not_applicable"
